@@ -1,0 +1,1 @@
+{"name":"Local: test","url":"/home/knshika/web-proj/competitive-code/test.cpp","tests":[{"id":1634487371305,"input":"1\n1 2 3 4 5 6 7 N N N N N 8 N 9","output":"4 2 1 5 6 3 8 7 9"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/knshika/web-proj/competitive-code/test.cpp","group":"local","local":true}
