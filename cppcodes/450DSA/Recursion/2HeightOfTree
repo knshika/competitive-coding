@@ -1,0 +1,17 @@
+int height(node *root)
+{
+if(root==NULL) return 0;
+int left = height(root->left)
+int height=height(root->right)
+
+return 1+max(left+right)
+
+}
+
+// height(root) ->height
+// lly height(root->left)->height of left sub tree = left
+// height(root->left)->height of right sub tree = right
+
+// 1+max(left,right)
+
+//base (root==NULL) return 0

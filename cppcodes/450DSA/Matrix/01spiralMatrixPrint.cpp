@@ -11,44 +11,25 @@ public:
     {
         // code here
         vector<int> res;
-        int i = 0, j = 0, k = 0;
-        while (i < r)
+        int sr = 0, sc = 0, er = r - 1, ec = c - 1;
+
+        while (sr <= er && sc <= ec)
         {
-            while (j < c)
-            {
-                res.push_back(matrix[i][j]);
-                j++;
-                //    cout<<"j,val"<<j<<matrix[i][j];
-            }
-            j--;
-            i++;
-            while (i < r)
-            {
-                res.push_back(matrix[i][j]);
-                i++;
-                // cout<<"j,val"<<i<<matrix[i][j];
-            }
-            i--;
-            j--;
-            while (j >= k)
-            {
-                res.push_back(matrix[i][j]);
-                j--;
-                // cout<<"j,val"<<j<<matrix[i][j];
-            }
-            j++;
-            i--;
-            while (i >= k)
-            {
-                res.push_back(matrix[i][j]);
-                i--;
-                // cout<<"j,val"<<i<<matrix[i][j];
-            }
-            i++;
-            j++;
-            r--;
-            c--;
-            k++;
+            for (int j = sc; j <= ec; j++)
+                res.push_back(matrix[sc][j]);
+            sr++;
+
+            for (int i = sr; i <= er; i++)
+                res.push_back(matrix[i][ec]);
+            ec--;
+
+            for (int j = ec; j >= sc; j--)
+                res.push_back(matrix[er][j]);
+            er--;
+
+            for (int i = er; i >= sr; i--)
+                res.push_back(matrix[i][sc]);
+            sc++;
         }
         return res;
     }
@@ -83,3 +64,27 @@ int main()
     }
     return 0;
 } // } Driver Code Ends
+
+//  // int r, c;
+//         // cin >> r >> c;
+//         int r = 3, c = 4, k = 1;
+//         vector<vector<int>> matrix(r);
+
+//         for (int i = 0; i < r; i++)
+//         {
+//             matrix[i].assign(c, 0);
+//             for (int j = 0; j < c; j++)
+//             {
+//                 matrix[i][j] = k;
+//             }
+//             // matrix[][] = {{1, 2, 3, 4},
+//             //            {5, 6, 7, 8},
+//             //            {9, 10, 11, 12}}
+//         }
+//         Solution ob;
+//         vector<int> result = ob.spirallyTraverse(matrix, r, c);
+//         for (int i = 0; i < result.size(); ++i)
+//             cout << result[i] << " ";
+//         cout << endl;
+//     }
+//     return 0;

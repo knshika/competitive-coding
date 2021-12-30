@@ -1,0 +1,41 @@
+recursion 
+1. decisions make input smaller
+2. recursion is used when we have some choice and we make decisions
+3. recursive tree using input -output method
+4. make decision tree and write code using that
+ 
+
+ methods to solve problem 
+ 1. recursive tree (ex- print subset)(medium) input-output method
+ when you have to make choice , decision => generally give solution in leaf node
+ 2. Hypothesis-Induction-Base Condition (IBH) (easy)
+ Hypothesis - realize the problem , if( p(n) gives 1 to n , then p(n-1) gives 1 to n-1)
+ Induction - formailze the code (ex- print 1 to n) p(n-1)+cout<<n
+ Base - smallest valid input (ex- p(1)=1 in above case)
+ void print(n){
+     if(n==1) cout<<n<<" ";
+     print(n-1);
+     cout<<n<<" ";
+ }
+ in thiis case resursive tree will be like print(7)->print(6)->.....print(1)
+
+ print n to 1
+ p(n) n to 1
+ p(n-1) n-1 to 1
+
+ => p(7) => 7 to 1 
+   p(6)=> 7 + 6 to 1
+
+    void print(n){
+     if(n==1) cout<<n<<" ";
+     cout<<n<<" ";
+     print(n-1);
+ }
+
+ q3 factorial
+ int factorial(n){
+ if (n==1) return fac;
+ return n*factorial(n-1)
+ }
+
+ 3. choice diagram (hard)
