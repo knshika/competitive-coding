@@ -1,0 +1,27 @@
+n,k K-th Symbol in Grammar  0->01 and 1->10 return 3rd row kth element1-indexed
+1,1       0
+2,(1-2)   0 | 1
+3,(1-4)   0 1 | 1 0
+4,(1-8)   0 1 1 0 | 1 0 0 1
+5,(1-16)  0 1 1 0 1 0 0 1 | 1 0 0 1 0 1 1 0
+
+base case n=1&&k=1 return 0;
+if(k<=mid) solve(n,k)=solve(n-1,k)
+if(k>mid) solve(n,k)=!solve(n-1,k-mid)
+
+
+int solve(int n, int k){
+  if(n==1&& k==1) return 0;
+  int mid = pow(2,n-1)/2;
+  if(k<=mid) return solve(n-1,k);
+  else return !solve(n-1,k-mid);
+}
+
+int main(){
+   int n,k;
+   cin>>n,k;
+    cout<<solve(n,k);
+return 0;
+
+}
+https://leetcode.com/problems/k-th-symbol-in-grammar/

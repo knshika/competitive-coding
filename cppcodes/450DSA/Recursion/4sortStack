@@ -1,0 +1,29 @@
+sort(1 5 0 2) -> sort ( 1 5 0) and add 2 in correct positon
+                 2. inserting done by recursion-> condition add when either array is empty  or last no us smaller or equal to 2
+                    insert(0 1 5,2)->insert(0 1,2)-> 0 1 2 + push 5 
+void insert(stack<int> &stack,int n){
+    if(stack.size()==0 || stack.top()<=n]) {
+        stack.push(n); 
+        return;
+        }
+        int val = stack.top();
+        stack.pop();
+        insert(stack,n);
+        stack.push(val);
+
+}
+void sort(stackector<int> &stack){
+    if(stack.size()==1) return; // already sorted
+    int temp = stack.top();
+    stack.pop();
+    sort(stack);
+    insert(stack,temp);
+    
+}
+int main(){
+    take inputs in stack
+
+    sort(stack);
+return 0;
+
+}

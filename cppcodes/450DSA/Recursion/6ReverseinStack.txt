@@ -1,0 +1,54 @@
+//reverse elements in stack
+5         1
+4         2 lly 
+3      => 3
+2         4
+1         5
+
+       5---------- 
+4          1 lly |
+3      =>  2     |
+2          3     | //another problem to insert this
+1          4     |
+            -----|
+
+1       1       
+2     =>2 
+3       3
+4       4
+        5
+
+      1       
+2    => 2 
+3       3
+4       4
+        5
+
+void insert(stack<int> &s, int n){
+    if(s.size()==0) {
+        s.push(n);
+        return;
+    }
+    int val = s.top();
+    s.pop();
+    insert(s,n);
+    s.push(val);
+    return;
+}
+
+void reverse(stackector<int> &stack){
+    if(s.size()==1) {
+     return;
+     } 
+    int temp = stack.top();
+    stack.pop();
+    reverse(stack);
+   insert(stack,temp);
+    return;
+}
+int main(){
+    take inputs in stack
+    reverse(stack);
+return stack;
+
+}

@@ -1,0 +1,32 @@
+//delete middle element in stack mid = int(size/2) +1
+5         5
+4         4 lly 
+3 , 3rd=> 2
+2         1
+1
+
+        5
+4          4 lly 
+3 , 2rd=>  2
+2          1
+1
+
+base case k=1 when element is in top
+void solve(stackector<int> &stack,k){
+    if(k==1) {stack.pop();
+     return;
+     } 
+    int temp = stack.top();
+    stack.pop();
+    solve(stack,k-1);
+   stack.push(temp);
+    return;
+}
+int main(){
+    take inputs in stack
+int n = stack.size()
+int k = n/2 +1
+    solve(stack,k);
+return stack;
+
+}

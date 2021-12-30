@@ -1,0 +1,29 @@
+sort(1 5 0 2) -> sort ( 1 5 0) and add 2 in correct positon
+                 2. inserting done by recursion-> condition add when either array is empty  or last no us smaller or equal to 2
+                    insert(0 1 5,2)->insert(0 1,2)-> 0 1 2 + push 5 
+void insert(vector<int> &v,int n){
+    if(v.size()==0 || v[v.size()-1<=n]) {
+        v.push_back(n); 
+        return;
+        }
+        int val = v[v.size-1];
+        v.pop_back();
+        insert(v,n);
+        v.push_back(val);
+
+}
+void sort(vector<int> &v){
+    if(v.size()==1) return; // already sorted
+    int temp = v[v.size()-1];
+    v.pop_back();
+    sort(v);
+    insert(v,temp);
+    
+}
+int main(){
+    take inputs in vector
+
+    sort(v);
+return 0;
+
+}
