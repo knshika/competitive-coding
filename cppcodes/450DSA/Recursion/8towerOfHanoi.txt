@@ -1,0 +1,60 @@
+Tower of Hanoi
+where we have three rods and n disks. The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:
+
+Only one disk can be moved at a time.
+Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack i.e. a disk can only be moved if it is the uppermost disk on a stack.
+No disk may be placed on top of a smaller disk.
+
+return the steps
+
+Take an example for 2 disks :
+Let rod 1 = 'A', rod 2 = 'B', rod 3 = 'C'.
+
+Step 1 : Shift first disk from 'A' to 'B'.
+Step 2 : Shift second disk from 'A' to 'C'.
+Step 3 : Shift first disk from 'B' to 'C'.
+
+base case solve(n,s,d,h) //no of disk, source rod, destination rob , helper rod
+
+solve(n-1,s,d,h)-> 1 step to move last disk to d then move n-1 disk to d
+
+base (1,s,d,h) move disk from s to d
+
+s->d,h => s->h,d -> s->d,h
+f(n,s,d,h)=f(n-1,s,h,d)+f(n-1,s,d,h)
+   |    | |
+  -|-   | | //keep all n-1 in h (recursion)
+ --|--  | |
+---|--- | |
+
+   |    |     |
+   |   -|-    | //keep n from s to d
+   |  --|--   |
+---|--- |     |
+
+|   |    |
+|  -|-   | //move n-1 from h-> d (recursion)
+| --|--  |
+|   | ---|---
+
+   |   | |
+   |   | | //base case move 1 from s-> d or when n=0 return;
+   |   | |
+---|-- | |
+
+void solve(int n,char s,char d, char h,&count){
+
+if(n=0) return;
+solve(n-1,s,h,d,count);
+count++;
+cout<<"shift"<<n<<"from"<<s<<"to"<<d;
+solve(n-1,h,d,s,count);  
+}
+
+int main()
+{
+int n = 4; // Number of disks
+int count=0;
+towerOfHanoi(n, 'A', 'C', 'B',count); // A, B and C are names of rods
+return 0;
+}
