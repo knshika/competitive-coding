@@ -35,34 +35,34 @@ public:
             seen[S[end]] = end;
             res = max(res, end - start + 1);
         }
-        int i = 0;
-        i < n; i++)
-        {
-            //     vector<bool> visited(256);
-            //     for(int j=i; j<n; j++){
-            //         if(visited[S[j]]==1) break;
-            //         else{
-            //             res=max(res,j-i+1);
-            //             visited[S[j]]=1;
-            //         }
-            //     }
-            //     visited[S[i]]=0;
-            // }
-            return res;
-        }
-    };
+        // int i = 0;
+        // for (int i = 0; i < n; i++)
+        // {
+        //     vector<bool> visited(256);
+        //     for(int j=i; j<n; j++){
+        //         if(visited[S[j]]==1) break;
+        //         else{
+        //             res=max(res,j-i+1);
+        //             visited[S[j]]=1;
+        //         }
+        //     }
+        //     visited[S[i]]=0;
+        // }
+        return res;
+    }
+};
 
-    // { Driver Code Starts.
-    int main()
+// { Driver Code Starts.
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int t;
-        cin >> t;
-        while (t--)
-        {
-            string str;
-            cin >> str;
-            Solution ob;
-            cout << ob.longestUniqueSubsttr(str) << endl;
-        }
-        return 0;
-    } // } Driver Code Ends
+        string str;
+        cin >> str;
+        Solution ob;
+        cout << ob.longestUniqueSubsttr(str) << endl;
+    }
+    return 0;
+} // } Driver Code Ends
