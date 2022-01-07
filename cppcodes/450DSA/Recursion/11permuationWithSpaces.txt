@@ -1,0 +1,62 @@
+Permutation with Spaces 
+Input:
+S = "ABC"
+Output: (A B C)(A BC)(AB C)(ABC)
+
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution{
+public:
+
+  vector<string> result;
+    void solve(string s,string op){
+        if(s.length()==0){
+            result.push_back(op);
+            return;
+        }
+        string op1=op,op2=op;
+        // op1+=s[0];
+        // op2+=" "+s[0];
+        op2.push_back(s[0]);
+         op1+=" ";
+        op1.push_back(s[0]);
+        
+        s.erase(0,1);
+        solve(s,op1);
+        solve(s,op2);
+        
+        
+    }
+
+    vector<string> permutation(string s){
+        // Code Here
+        string op;
+        op.push_back(s[0]);
+     s.erase(0,1);
+        solve(s,op);
+        return result;
+    }
+};
+
+// { Driver Code Starts.
+
+int  main(){
+    int t;
+    cin>>t;
+    while(t--){
+        string S;
+        cin>>S;
+        vector<string> ans;
+        Solution obj;
+        ans = obj.permutation(S);
+        for(int i=0;i<ans.size();i++){
+            cout<<"("<<ans[i]<<")";
+        }
+        cout << endl;
+    }
+}
+  // } Driver Code Ends

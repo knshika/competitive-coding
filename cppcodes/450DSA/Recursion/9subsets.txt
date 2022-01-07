@@ -1,0 +1,36 @@
+//print all subsets , supersets , subsequences 
+
+using input-output recursive tree
+
+input - "ab" output-" " (2 choice take or don't take)
+
+                "ab" , ""
+                x       v
+            "b" ""     "b" "a"
+        x   v            x    v
+     ""  ""  "" "b"   "" "a"  "" "ab"  //input becomes empty string , all subsets are in leaf node
+
+     void print(string ip,string op){
+         if(ip.length==0){
+             cout<<op<<" ";
+             return;
+         }
+         string op1 = op; //same at beginning, when we dont take anything
+         string op2 = op; //when we take input
+        op2.push_back(ip[0]);
+        ip.erase(ip.begin()+0);
+        print(ip,op1);
+        print(ip,op2);
+     }
+
+     int main(){
+         string s;
+        print(s,"");
+        return 0;
+     }
+
+     //difference between subset, substring and subsequence
+
+     "abc" -> "" a b c ab bc (continuity matters) substring
+              "" a b c ab bc ac (order matters)  subsequence
+              "" a b c ab/ba bc/cb ac/ca (nothing matters)  subset
