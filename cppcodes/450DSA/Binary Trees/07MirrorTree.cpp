@@ -1,4 +1,6 @@
 // { Driver Code Starts
+// Initial Template for C++
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -9,58 +11,13 @@ struct Node
     int data;
     struct Node *left;
     struct Node *right;
-};
-// Utility function to create a new Tree Node
-Node *newNode(int val)
-{
-    Node *temp = new Node;
-    temp->data = val;
-    temp->left = NULL;
-    temp->right = NULL;
 
-    return temp;
-}
-
-class Solution
-{
-public:
-    // Function to return the level order traversal of a tree.
-    vector<int> levelOrder(Node *node)
+    Node(int x)
     {
-        // Your code
-        vector<int> res;
-
-        queue<Node *> q;
-        q.push(node);
-        while (q.empty() == false)
-        {
-            Node *temp = q.front();
-            res.push_back(temp->data);
-            q.pop();
-            if (temp->left != NULL)
-                q.push(temp->left);
-            if (temp->right != NULL)
-                q.push(temp->right);
-        }
-        return res;
+        data = x;
+        left = right = NULL;
     }
 };
-
-// { Driver Code Starts.
-
-/* Helper function to test mirror(). Given a binary
-   search tree, print out its data elements in
-   increasing sorted order.*/
-void inOrder(struct Node *node)
-{
-    if (node == NULL)
-        return;
-
-    inOrder(node->left);
-    printf("%d ", node->data);
-
-    inOrder(node->right);
-}
 
 // Function to Build Tree
 Node *buildTree(string str)
@@ -78,7 +35,7 @@ Node *buildTree(string str)
         ip.push_back(str);
 
     // Create the root of the tree
-    Node *root = newNode(stoi(ip[0]));
+    Node *root = new Node(stoi(ip[0]));
 
     // Push the root to the queue
     queue<Node *> queue;
@@ -101,7 +58,7 @@ Node *buildTree(string str)
         {
 
             // Create the left child for the current node
-            currNode->left = newNode(stoi(currVal));
+            currNode->left = new Node(stoi(currVal));
 
             // Push it to the queue
             queue.push(currNode->left);
@@ -118,7 +75,7 @@ Node *buildTree(string str)
         {
 
             // Create the right child for the current node
-            currNode->right = newNode(stoi(currVal));
+            currNode->right = new Node(stoi(currVal));
 
             // Push it to the queue
             queue.push(currNode->right);
@@ -129,23 +86,72 @@ Node *buildTree(string str)
     return root;
 }
 
-/* Driver program to test size function*/
-int main()
+/* Helper function to test mirror(). Given a binary
+   search tree, print out its data elements in
+   increasing sorted order.*/
+void inOrder(struct Node *node)
 {
-    int t;
-    scanf("%d ", &t);
-    while (t--)
-    {
-        string s;
-        getline(cin, s);
-        Node *root = buildTree(s);
-        Solution ob;
-        vector<int> res = ob.levelOrder(root);
-        for (int i : res)
-            cout << i << " ";
-        cout << endl;
-    }
-    return 0;
+    if (node == NULL)
+        return;
+
+    inOrder(node->left);
+    printf("%d ", node->data);
+
+    inOrder(node->right);
 }
 
 // } Driver Code Ends
+// function Template for C++
+
+/* A binary tree node has data, pointer to left child
+   and a pointer to right child /
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+}; */
+
+class Solution
+{
+public:
+    // Function to convert a binary tree into its mirror tree.
+    void mirror(Node *node)
+    {
+        // code here
+        if (node)
+        {
+            Node *temp = node->left;
+            node->left = node->right;
+            node->right = temp;
+            mirror(node->left);
+            mirror(node->right);
+        }
+    }
+};
+
+// { Driver Code Starts.
+
+/* Driver program to test size function*/
+int main()
+{
+    int tc;
+    scanf("%d ", &tc);
+    while (tc--)
+    {
+        string str;
+        getline(cin, str);
+        Node *root = buildTree(str);
+        Solution ob;
+        ob.mirror(root);
+        inOrder(root);
+        cout << "\n";
+    }
+
+    return 0;
+} // } Driver Code Ends

@@ -1,3 +1,5 @@
+// max no of left and right nodes from any node , need not be root
+
 // { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
@@ -10,59 +12,14 @@ struct Node
     struct Node *left;
     struct Node *right;
 };
-// Utility function to create a new Tree Node
 Node *newNode(int val)
 {
     Node *temp = new Node;
     temp->data = val;
     temp->left = NULL;
     temp->right = NULL;
-
     return temp;
 }
-
-class Solution
-{
-public:
-    // Function to return the level order traversal of a tree.
-    vector<int> levelOrder(Node *node)
-    {
-        // Your code
-        vector<int> res;
-
-        queue<Node *> q;
-        q.push(node);
-        while (q.empty() == false)
-        {
-            Node *temp = q.front();
-            res.push_back(temp->data);
-            q.pop();
-            if (temp->left != NULL)
-                q.push(temp->left);
-            if (temp->right != NULL)
-                q.push(temp->right);
-        }
-        return res;
-    }
-};
-
-// { Driver Code Starts.
-
-/* Helper function to test mirror(). Given a binary
-   search tree, print out its data elements in
-   increasing sorted order.*/
-void inOrder(struct Node *node)
-{
-    if (node == NULL)
-        return;
-
-    inOrder(node->left);
-    printf("%d ", node->data);
-
-    inOrder(node->right);
-}
-
-// Function to Build Tree
 Node *buildTree(string str)
 {
     // Corner Case
@@ -129,23 +86,64 @@ Node *buildTree(string str)
     return root;
 }
 
+// } Driver Code Ends
+/* Tree node structure  used in the program
+
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+}; */
+
+class Solution
+{
+public:
+    // Function to return the diameter of a Binary Tree.
+    int solve(Node *root, int &res)
+    {
+        if (!root)
+            return 0;
+        int maxLeft = solve(root->left, res);
+        int maxRight = solve(root->right, res);
+
+        res = max(res, 1 + maxLeft + maxRight);
+
+        return 1 + max(maxLeft, maxRight);
+    }
+
+    int diameter(Node *root)
+    {
+        // Your code here
+        if (!root)
+            return 0;
+        int res = 0;
+
+        solve(root, res);
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+
 /* Driver program to test size function*/
 int main()
 {
     int t;
-    scanf("%d ", &t);
+    scanf("%d\n", &t);
     while (t--)
     {
         string s;
         getline(cin, s);
         Node *root = buildTree(s);
         Solution ob;
-        vector<int> res = ob.levelOrder(root);
-        for (int i : res)
-            cout << i << " ";
-        cout << endl;
+        cout << ob.diameter(root) << endl;
     }
     return 0;
 }
-
 // } Driver Code Ends

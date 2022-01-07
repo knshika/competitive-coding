@@ -2,8 +2,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/* A binary tree node has data, pointer to left child
-   and a pointer to right child */
 struct Node
 {
     int data;
@@ -20,48 +18,6 @@ Node *newNode(int val)
 
     return temp;
 }
-
-class Solution
-{
-public:
-    // Function to return the level order traversal of a tree.
-    vector<int> levelOrder(Node *node)
-    {
-        // Your code
-        vector<int> res;
-
-        queue<Node *> q;
-        q.push(node);
-        while (q.empty() == false)
-        {
-            Node *temp = q.front();
-            res.push_back(temp->data);
-            q.pop();
-            if (temp->left != NULL)
-                q.push(temp->left);
-            if (temp->right != NULL)
-                q.push(temp->right);
-        }
-        return res;
-    }
-};
-
-// { Driver Code Starts.
-
-/* Helper function to test mirror(). Given a binary
-   search tree, print out its data elements in
-   increasing sorted order.*/
-void inOrder(struct Node *node)
-{
-    if (node == NULL)
-        return;
-
-    inOrder(node->left);
-    printf("%d ", node->data);
-
-    inOrder(node->right);
-}
-
 // Function to Build Tree
 Node *buildTree(string str)
 {
@@ -129,9 +85,11 @@ Node *buildTree(string str)
     return root;
 }
 
-/* Driver program to test size function*/
+vector<int> reverseLevelOrder(Node *root);
+
 int main()
 {
+
     int t;
     scanf("%d ", &t);
     while (t--)
@@ -139,13 +97,42 @@ int main()
         string s;
         getline(cin, s);
         Node *root = buildTree(s);
-        Solution ob;
-        vector<int> res = ob.levelOrder(root);
-        for (int i : res)
-            cout << i << " ";
+        vector<int> result = reverseLevelOrder(root);
+        for (int i = 0; i < result.size(); ++i)
+        {
+            cout << result[i] << " ";
+        }
         cout << endl;
     }
-    return 0;
-}
+    return 1;
+} // } Driver Code Ends
 
-// } Driver Code Ends
+/*
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+}; */
+vector<int> reverseLevelOrder(Node *root)
+{
+    // code here
+    vector<int> res;
+    queue<Node *> q;
+    q.push(root);
+    while (q.empty() == false)
+    {
+        Node *temp = q.front();
+        res.push_back(temp->data);
+
+        q.pop();
+        if (temp->right)
+        {
+            q.push(temp->right);
+        }
+        if (temp->left)
+            q.push(temp->left);
+    }
+    reverse(res.begin(), res.end());
+    return res;
+}
